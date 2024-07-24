@@ -1,0 +1,15 @@
+<select class="form-select-option boxsizing" id="owneridtype" name="owneridtype">
+    <option value="6">Owner ID Type : Business</option>
+    <option value="8">Owner ID Type : Club/Association/Organisation</option>
+    <option value="7">Owner ID Type : Company</option>
+    <option value="A">Owner ID Type : Foreign Company</option>
+    <option value="D">Owner ID Type : Foreign Identification Number</option>
+    <option value="3">Owner ID Type : Foreign Passport</option>
+    <option value="4">Owner ID Type : Government</option>
+    <option value="B">Owner ID Type : Limited Liability Partnership</option>
+    <option value="C">Owner ID Type : Limited Partnership</option>
+    <option value="2">Owner ID Type : Malaysia NRIC</option>
+    <option value="9">Owner ID Type : Professional</option>
+    <option value="1" selected="selected">Owner ID Type : Singapore NRIC</option>
+    <option value="5">Owner ID Type : Statutory Board </option>					
+</select>

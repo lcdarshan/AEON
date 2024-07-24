@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="styles.css">
+
+
+<!-- Include the Treasure Data SDK code here -->
+    <script type="text/javascript">
+        !function(t,e){if(void 0===e[t]){e[t]=function(){e[t].clients.push(this),this._init=[Array.prototype.slice.call(arguments)]},e[t].clients=[];for(var r=function(t){return function(){return this["_"+t]=this["_"+t]||[],this["_"+t].push(Array.prototype.slice.call(arguments)),this}},s=["addRecord","blockEvents","fetchServerCookie","fetchGlobalID","fetchUserSegments","resetUUID","ready","setSignedMode","setAnonymousMode","set","trackEvent","trackPageview","trackClicks","unblockEvents"],n=0;n<s.length;n++){var c=s[n];e[t].prototype[c]=r(c)}var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=("https:"===document.location.protocol?"https:":"http:")+"//cdn.treasuredata.com/sdk/2.5/td.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)}}("Treasure",this);
+
+
+        var td = new Treasure({
+        writeKey: 'Y11465/17d63a631217b7ac4058265d84502f124b68b88c',
+        database: 'car',
+        host: 'ap02.records.in.treasuredata.com' // Update with your region
+    });
+
+
+
+    function sendDataToTreasureData() {
+            var name = document.getElementById('name').value;
+            var mobNumber = document.getElementById('mobNumber').value;
+            var email = document.getElementById('email').value;
+            var vehiclePlate = document.getElementById('vehiclePlate').value;
+
+            // Create a data object with the form values
+            var data = {
+                name: name,
+                mobNumber: mobNumber,
+                email: email,
+                vehiclePlate: vehiclePlate
+            };
+
+            // Send the data to Treasure Data
+            td.track('form_submissions', data, function() {
+                console.log('Data sent to Treasure Data');
+                // Optionally, you can perform additional actions after sending the data.
+            });
+        }
+    </script>
+
+
+</head>
+<body>
+    <h1>Registration Form</h1>
+    <form method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="mobNumber">Mobile Number:</label>
+        <input type="text" id="mobNumber" name="mobNumber" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="vehiclePlate">Vehicle Plate Number:</label>
+        <input type="text" id="vehiclePlate" name="vehiclePlate" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

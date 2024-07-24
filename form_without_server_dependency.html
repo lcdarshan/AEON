@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Multi-Section Form</title>
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <script type="text/javascript">
+  $(function() {
+  $('.sellbybidform').unbind('click').on('click', '.submitbtn', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    sendFormPosition();
+    var type = $('#type').val();
+    var dealer = $('#dealer').val();
+    var isIframe = $('#isIframe').val();
+    var param = $('#param').val();
+    var base_url = window.location.origin;
+    var ok = 1;
+    var proceed = 1;
+    var ref = $('#ref').val();
+    var sourceUrl = $('#source_url').val();
+    var fromCE = $('#fromCE').val();
+
+    if (type !== '' && type == 'frm1') {
+      var name = $('#name').val();
+      var contact = $('#contact').val();
+      var carplate = $('#carplate').val();
+      var owneridtype = $('#owneridtype option:selected').val();
+      var nric = $('#nric').val();
+      var preferredOutlet = $('#preferred-outlet').val();
+      proceed = 1;
+    } else {
+      proceed = 0;
+    }
+
+    $(".sellbybidform #sellbybidding_form").remove();
+    var tobeappend = '<form name="sellbybidding_form1" id="sellbybidding_form"><div class="col-md-12"><div class="sbb-book-aform-middle-line">&nbsp;</div></div><div class="col-md-12 p-top10">Your Name<br><div class="sbb-book-aform-list-info" id="name">' + data.contact_person + '</div></div><div class="col-md-6 p-top10">Contact Number<br><div class="sbb-book-aform-list-info" id="contact">' + data.contact_number + '</div></div><div class="col-md-6 p-top10">Vehicle Plate Number<br><div class="sbb-book-aform-list-info" id="carplate">' + data.carplate_no + '</div></div><div class="col-md-12"><div class="sbb-book-aform-middle-line">&nbsp;</div></div><div class="col-md-12 form-input-borders"><input type="email" id="email" name="txtemail" class="form-control" placeholder="Email" required></div><div class="col-md-12 form-input-borders"><div class="input-group date form_datetime"><input class="form-control form-control-overwrite-02" id="pdatetime" name="pdatetime" type="text" placeholder="Preferred Date and Time" required><span class="input-group-addon" id="input_pick"><span class="glyphicon glyphicon-th"></span></span></div></div><div class="col-md-12 form-input-borders"><textarea id="txtremark" name="txtremark" class="form-control" placeholder="Mileage / Remarks"></textarea></div><div class="col-md-12 sbb-book-aform-info"><input type="checkbox" name="agreeterms" id="agreeterms" value="1" style="display:inline;" required><label for="agreeterms" style="font-weight:normal; display:inline;">&nbsp;&nbsp;By submitting this form, I agree for Quotz & Sgcarmart to contact me on matters related to my vehicle. Your information is safe with us. Learn more about our Privacy Policy.</label></div><input type="hidden" id="ref" name="ref" value="' + ref + '"><input type="hidden" id="quotID" name="quotID" value="' + data.quotID + '"><input type="hidden" id="owneridtype" value="' + data.owner_type + '"><input type="hidden" id="nric" value="' + data.reg_no + '"><input type="hidden" name="param" id="param" value="sellbybid" /><input type="hidden" name="source_url" id="source_url" value="' + sourceUrl + '" /><input type="hidden" name="isIframe" id="isIframe" value="' + isIframe + '" /><input type="hidden" name="submitBookForm02" value="ok"/><input type="hidden" id="fromCE" name="fromCE" value="' + fromCE + '"/><input type="hidden" id="type" value="frm2"/><div class="col-md-12 p-top10"><button type="submit" class="btn sbb-book-aform-back-button" onclick="javascript:window.location.reload(true); window.location.assign(\'#index-form\');">Back</button><button type="submit" class="btn sbb-book-aform-button submitbtn">Submit</button></div></form>';
+    $(".sellbybidform").append(tobeappend);
+    $('.form_datetime').datetimepicker({
+      format: 'yyyy-mm-dd hh:00',
+      minView: 1,
+      hoursDisabled: '0,1,2,3,4,5,6,7,8,9,19,20,21,22,23',
+      pickerPosition: "bottom-left"
+    });
+  });
+});
+
+  </script>
+
+  <a class="anchor" id="index-form"></a>
+  <div class="col-md-12 col-xs-12 sbb-book-appointment-form-border sbb-book-aform-col">
+  <div class="col-md-12"><h4 class="sbb-book-aform-header" style="margin:0;">Book an Appointment</h4></div>
+  <div class="col-md-12">
+  <p class="pcc-sell-by-bid-small">Arrange a timing for us to inspect and auction your car.<br></p>
+  </div>
+  <div class="sellbybidform" id="form_sbb">
+  <form  name="sellbybidding_form1" id="sellbybidding_form">
+  <div class="col-md-12 form-input-borders">
+  <input type="text" id="name" name="txtname" class="form-control" value="" placeholder="Your Name" required="" ps-firstname-field-id="6d6137bd-5685-4971-98d9-88353226008c">
+  </div>
+  <div class="col-md-12 form-input-borders">
+  <select id="preferred-outlet" name="location" class="form-control" required=""><option value="" disabled="" selected="">Preferred Option</option><option value="1">Leng Kee</option><option value="3">Quotz Doorstep</option></select> </div>
+  <div class="col-md-6 form-input-borders">
+  <input type="text" id="contact" name="contact_number" class="form-control" pattern=".{8,8}" maxlength="8" onkeypress="return isNumberKey(this, event)" value="" placeholder="Contact Number" required="">
+  </div>
+  <div class="col-md-6 form-input-borders">
+  <input type="text" id="carplate" name="vehicle_plate_number" class="form-control" maxlength="8" value="" placeholder="Vehicle Plate Number" required="">
+  </div>
+  <div class="col-md-12 form-input-borders">
+  <select class="form-control" id="owneridtype" name="owneridtype" onchange="IDChange();">
+  <option value="6">Owner ID Type : Business</option><option value="8">Owner ID Type : Club/Association/Organisation</option><option value="7">Owner ID Type : Company</option><option value="A">Owner ID Type : Foreign Company</option><option value="D">Owner ID Type : Foreign Identification Number</option><option value="3">Owner ID Type : Foreign Passport</option><option value="4">Owner ID Type : Government</option><option value="B">Owner ID Type : Limited Liability Partnership</option><option value="C">Owner ID Type : Limited Partnership</option><option value="2">Owner ID Type : Malaysia NRIC</option><option value="9">Owner ID Type : Professional</option><option value="1" selected="">Owner ID Type : Singapore NRIC</option><option value="5">Owner ID Type : Statutory Board</option> </select>
+  </div>
+  <div class="col-md-12 form-input-borders">
+  <input type="text" placeholder="Owner's ID (last 4 characters e.g. 456D)" id="nric" name="owner_id" class="form-control" title="Minimum 4 characters with at least 1 Alphabet" pattern="(?=(?:[^a-zA-Z]*[a-zA-Z]){1})(?=(?:\D*\d){3}).*" maxlength="4" value="" required="">
+  </div>
+  <input type="hidden" name="param" id="param" value="sellbybid">
+  <input type="hidden" name="source_url" id="source_url" value="https://www.quotz.com.sg/">
+  <input type="hidden" name="ref" id="ref" value="">
+  <input type="hidden" name="dealer" id="dealer" value="">
+  <input type="hidden" name="isIframe" id="isIframe" value="0">
+  <input type="hidden" name="submitBookForm01" value="ok">
+  <input type="hidden" id="type" value="frm1">
+  <input type="hidden" name="fromCE" id="fromCE" value="0">
+  <div class="col-md-12 p-top10" align="left">
+  <button type="submit" class="btn sbb-book-aform-button submitbtn submitbtn-sbb" style="color:#0F86D0;">NEXT</button>
+  </div>
+  </form>
+  </div>
+</body>
+</html>
